@@ -1,9 +1,13 @@
 from order import *
 
 def main():
-    dist = APICalls()
-    out = dist.Get_DistanceAndDuration("ST74BT", "CW26HR")
-    print(out)
+    ol = OrderList("ST65TJ")
+    ol.AddToList("123", "sofa", "012345678910", "ST65TJ")
+    ol.AddToList("124", "sofa", "012345678910", "CW26HR")
+    ol.AddToList("126", "sofa", "012345678910", "ST74HB")
+    ol.AddToList("125", "sofa", "012345678910", "CW56PH")
+
+    ol.OptimiseJourney()
 
 if __name__ == "__main__":
     main()

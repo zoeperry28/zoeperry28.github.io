@@ -1,19 +1,18 @@
+import sys
 import requests 
 import json
 
+class Helper: 
+    def Meter2Mile(Meter):
+        return Meter / 1609
 class Order:
     def __init__(self, OrderNo, ItemString, Tel, Postcode):
         self.OrderNo = OrderNo 
         self.ItemString = ItemString 
         self.Tel = Tel
         self.Postcode = Postcode
-
-class OrderList:
-    def __init__(self, OrderList):
-        self.OrderList = OrderList
-    
-    def AddToList(self, Order):
-        self.OrderList.append(Order)
+        self.LatLong = []
+        self.ShortestPath = ""
 
 class APICalls:
     APIKey = ""
@@ -48,10 +47,66 @@ class APICalls:
         dura = dir['features'][0]['properties']['segments'][0]['duration']
         return [dist,dura]
 
+class Dijkstra:
+    def ShortestPath(Nodes, NodesAndVerticies, StartPoint):
+        final = []
+        route = []
+        sp = []
+        current_postcode = StartPoint
+        shortest = 99999999999999999999999
+        shortest_item = 0
 
+        for i in range(1, len(Nodes)):
+            sp = []
+            for path in NodesAndVerticies:
+                print (path[0] + "==" + current_postcode + "?")
+                if (path[0] == current_postcode):
+                    sp.append(path)
 
+            for item in sp: 
+                if (item[2] < shortest) :
+                    shortest_item = item
+                    shortest = item[2]
+                    final.append(item)
+                    current_postcode = item[1]
+                    
 
+        print(final)
+            
+               
+               
 
+            
+class OrderList:
+    visited = []
+    m = APICalls()
+    def __init__(self, FromShop, OrderList=[]):
+        self.FromShop = FromShop
+        self.OrderList = OrderList
+        
+    def AddToList(self, OrderNo, ItemString, Tel, Postcode):
+        order = Order(OrderNo, ItemString, Tel, Postcode)
+        res = self.m.Get_LatLong(order.Postcode)
+        order.LatLong = res
+        self.OrderList.append(order)
 
+    def IsAccessed(self, Postcode, Visited):
+        if (Postcode in Visited):
+            return True
+        else:
+            return False
 
-
+    def OptimiseJourney(self):
+        distances = []
+        unique_postcodes = []
+        for item in self.OrderList:
+            if item.Postcode not in unique_postcodes:
+                print(item)
+                unique_postcodes.append(item.OrderNo)
+            for other_item in self.OrderList:
+                if (item.Postcode != other_item.Postcode):
+                    temp = self.m.Get_DistanceAndDuration(item.Postcode, other_item.Postcode)[0]
+                    distances.append([item.Postcode,other_item.Postcode,temp])
+                else:
+                    pass
+        return Dijkstra.ShortestPath(unique_postcodes, distances, self.FromShop);
