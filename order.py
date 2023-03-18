@@ -31,7 +31,6 @@ class APICalls:
 
     def Get_LatLong(self, Postcode):
         url = self.OSM_Location_Request(Postcode)
-        print(url)
         res = requests.get(self.OSM_Location_Request(Postcode))
         LatLong = res.json()
         return [LatLong[0]['lat'], LatLong[0]['lon']]
@@ -39,44 +38,55 @@ class APICalls:
     def Get_DistanceAndDuration(self, Postcode1, Postcode2):
         P1_LL = self.Get_LatLong(Postcode1);
         P2_LL = self.Get_LatLong(Postcode2);
-        print(P1_LL)
-        print(P2_LL)
         res = requests.get(self.OpenRouteService_DirectionsDistance(P1_LL, P2_LL))
         dir = res.json()
         dist = dir['features'][0]['properties']['segments'][0]['distance']
         dura = dir['features'][0]['properties']['segments'][0]['duration']
         return [dist,dura]
 
-class Dijkstra:
-    def ShortestPath(Nodes, NodesAndVerticies, StartPoint):
-        final = []
+class RouteFinder:
+
+    def RemoveWithStartPoint(self, NodesAndVertices, StartPoint):
+        res = []
+        for item in NodesAndVertices: 
+            if (item[0] != StartPoint and item[1] != StartPoint):
+                res.append(item)
+        return res; 
+
+    def GetBest(self, ModNodesAndVertices):
+        shortest = 999999999999999999999999999999999;
+        best = []
+        for item in ModNodesAndVertices:
+            if (item[2] < shortest):
+                best = item;
+                shortest = float(item[2])
+        return best
+            
+    def FindWithStartPoint(self, NodesAndVertices, Postcode):
+        Accessible = []
+        for item in NodesAndVertices:
+            if (item[0] == Postcode):
+                Accessible.append(item)
+            else:
+                pass
+        return Accessible
+
+    def ShortestPath(self, Nodes, NodesAndVerticies, StartPoint):
         route = []
-        sp = []
-        current_postcode = StartPoint
-        shortest = 99999999999999999999999
-        shortest_item = 0
+        route.append(StartPoint)
+        CurrentNode = StartPoint
+        All = NodesAndVerticies;
+        
+        while(len(route) != len(Nodes)):
+            # Get all of the accessible nodes
+            out = self.FindWithStartPoint(All, CurrentNode)
+            out = self.GetBest(out);
+            All = self.RemoveWithStartPoint(All, CurrentNode)
+            CurrentNode = out[1]
+            route.append(out[1])
+        print(route)
+        return route
 
-        for i in range(1, len(Nodes)):
-            sp = []
-            for path in NodesAndVerticies:
-                print (path[0] + "==" + current_postcode + "?")
-                if (path[0] == current_postcode):
-                    sp.append(path)
-
-            for item in sp: 
-                if (item[2] < shortest) :
-                    shortest_item = item
-                    shortest = item[2]
-                    final.append(item)
-                    current_postcode = item[1]
-                    
-
-        print(final)
-            
-               
-               
-
-            
 class OrderList:
     visited = []
     m = APICalls()
@@ -101,12 +111,10 @@ class OrderList:
         unique_postcodes = []
         for item in self.OrderList:
             if item.Postcode not in unique_postcodes:
-                print(item)
-                unique_postcodes.append(item.OrderNo)
+                unique_postcodes.append(item.Postcode)
             for other_item in self.OrderList:
                 if (item.Postcode != other_item.Postcode):
                     temp = self.m.Get_DistanceAndDuration(item.Postcode, other_item.Postcode)[0]
                     distances.append([item.Postcode,other_item.Postcode,temp])
-                else:
-                    pass
-        return Dijkstra.ShortestPath(unique_postcodes, distances, self.FromShop);
+        rf = RouteFinder();
+        return rf.ShortestPath(unique_postcodes, distances, unique_postcodes[0]);
