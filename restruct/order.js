@@ -50,7 +50,7 @@ class OrderList {
             {
                 unique_postcodes.push(this.Order_List[i].Postcode);
             }
-            for (var j = - 0 ; j < this.Order_List.length; j++)
+            for (var j = 0 ; j < this.Order_List.length; j++)
             {
                 if (!(this.Order_List[i].Postcode === this.Order_List[j].Postcode))
                 {
@@ -61,7 +61,8 @@ class OrderList {
             }
         }
         console.log(distances)
-        //return rf.ShortestPath(unique_postcodes, distances, unique_postcodes[0]);
+        var rf = new RouteFinder();
+        return rf.ShortestPath(unique_postcodes, distances, this.FromShop);
     }
 }
 
@@ -111,21 +112,21 @@ class RouteFinder {
     {
         console.log(Nodes);
         console.log(NodesAndVertices);
-        //let route = [];
-        //route.push(StartPoint);
-        //let CurrentNode = StartPoint;
-        //let All = NodesAndVertices;
+        let route = [];
+        route.push(StartPoint);
+        let CurrentNode = StartPoint;
+        let All = NodesAndVertices;
 //
-        //while (route.length !== Nodes.length)
-        //{
-        //    let out = this.FindWithStartPoint(All, CurrentNode);
-        //    out = this.GetBest(out);
-        //    All = this.RemoveWithStartPoint(All, CurrentNode);
-        //    CurrentNode = out[1];
-        //    route.push(out[1]);
-        //}
-        //console.log(route)
-        //return route; 
+        while (route.length !== Nodes.length)
+        {
+            let out = this.FindWithStartPoint(All, CurrentNode);
+            out = this.GetBest(out);
+            All = this.RemoveWithStartPoint(All, CurrentNode);
+            CurrentNode = out[1];
+            route.push(out[1]);
+        }
+        console.log(route)
+        return route; 
     }
 }
 
