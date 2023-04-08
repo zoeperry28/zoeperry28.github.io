@@ -26,7 +26,6 @@ class Order:
         ShortestPath = ""
 
 class OrderList:
-    visited = []
     m = APICalls()
     def __init__(self, FromShop, OrderList=[]):
         self.FromShop = FromShop
