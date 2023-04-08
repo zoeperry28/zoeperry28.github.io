@@ -1,0 +1,48 @@
+// get the form element
+const form = document.querySelector('form');
+
+// create an empty array to hold the orders
+let orders = [];
+
+// listen for button click
+document.addEventListener('DOMContentLoaded', () => {
+    const button = document.querySelector('#add-order');
+    button.addEventListener('click', (event) => {
+        // prevent the default form submission behavior
+        event.preventDefault();
+
+        // get the form data
+        const orderNo = document.querySelector('#inlineFormCustomSelect1').value;
+        const postcode = document.querySelector('#inlineFormCustomSelect2').value;
+        const orderDetails = document.querySelector('#inlineFormCustomSelect3').value;
+        const phoneNumber = document.querySelector('#inlineFormCustomSelect4').value;
+
+        // create an object with the form data
+        const order = {
+            orderNo: orderNo,
+            postcode: postcode,
+            orderDetails: orderDetails,
+            phoneNumber: phoneNumber
+        };
+
+        // add the order object to the orders array
+        orders.push(order);
+
+        // reset the form fields 
+        document.querySelector('#inlineFormCustomSelect1').value = '';
+        document.querySelector('#inlineFormCustomSelect2').value = '';
+        document.querySelector('#inlineFormCustomSelect3').value = '';
+        document.querySelector('#inlineFormCustomSelect4').value = '';
+
+
+        // log the orders array to the console
+        console.log(orders);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const button = document.querySelector('#add-order');
+    button.addEventListener('click', (event) => {
+
+    });
+});
