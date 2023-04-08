@@ -1,3 +1,4 @@
+import { OrderList } from './order.js';
 // get the form element
 const form = document.querySelector('form');
 
@@ -41,8 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const button = document.querySelector('#add-order');
+    const button = document.querySelector('#complete');
     button.addEventListener('click', (event) => {
-
+        if (orders.length !== 0)
+        {
+            let order_list = new OrderList("ST65TJ");
+            for (var i = 0 ; i < orders.length; i++)
+            {
+                order_list.Add(orders.orderNo, orders.orderDetails, orders.phoneNumber, orders.postcode);
+            }
+        }
+        else
+        {
+            // do nothing
+        }
     });
 });

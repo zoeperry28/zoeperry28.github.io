@@ -1,4 +1,10 @@
-import fetch from 'node-fetch' 
+let fetch = globalThis?.fetch;
+
+if (!fetch && process?.versions?.node) {
+  fetch = (await import('node-fetch')).default;
+}
+
+console.log(fetch);
 
 var APIKey = "5b3ce3597851110001cf62485a4bf8c2a5b64dd0bdaf5919a644b628";
 class APICalls {
