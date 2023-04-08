@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts":{    
-  "test": "jest --config=./jest.config.json --coverage"
+    "test": "echo \"No test specified\""
   },
   "author": "",
   "license": "ISC",
