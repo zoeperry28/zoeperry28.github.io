@@ -53,6 +53,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             var res = await order_list.OptimiseJourney();
             console.log(res);
+
+            var out = "[";
+            for (var j = 0 ; j < res.length; j++)
+            {
+                if (j != res.length-1)
+                {
+                    out = out + res[j].Postcode + ", ";
+                }
+                else
+                {
+                    out = out + res[j].Postcode + "]";
+                }
+
+            }
+
+            document.getElementById("temp-list").innerHTML = out;
+           
         }
         else
         {
