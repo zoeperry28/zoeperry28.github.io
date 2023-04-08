@@ -43,14 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const button = document.querySelector('#complete');
-    button.addEventListener('click', (event) => {
+    button.addEventListener('click', async (event) => {
         if (orders.length !== 0)
         {
             let order_list = new OrderList("ST65TJ");
             for (var i = 0 ; i < orders.length; i++)
             {
-                order_list.Add(orders.orderNo, orders.orderDetails, orders.phoneNumber, orders.postcode);
+                order_list.Add(orders[i].orderNo, orders[i].orderDetails, orders[i].phoneNumber, orders[i].postcode);
             }
+            var res = order_list.OptimiseJourney();
+            console.log(res);
         }
         else
         {
