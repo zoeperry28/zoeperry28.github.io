@@ -51,12 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 order_list.Add(orders[i].orderNo, orders[i].orderDetails, orders[i].phoneNumber, orders[i].postcode);
             }
-            var res = order_list.OptimiseJourney();
+            var res = await order_list.OptimiseJourney();
             console.log(res);
         }
         else
         {
             // do nothing
         }
+        orders = [];
     });
 });

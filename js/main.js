@@ -2,6 +2,7 @@ import {APICalls} from './api_calls.js'
 import { OrderList } from './order.js';
 import { Order } from './order.js';
 
+// For debug purposes 
 async function main() {
   var result;
   const api = new APICalls();
