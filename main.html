@@ -18,33 +18,45 @@
     <div class="container">
         <form>
             <div>
-                <h1> Tunstall Order Form </h1>
-                <div class="form-group">
-                    <div class="postcode_entry">
-                        <label class="mr-sm-2" for="inlineFormCustomSelect">Order No</label>
-                        <input type="text" class="form-control" id="inlineFormCustomSelect1" placeholder="Order No">
-                    </div>
-                    <div class="postcode_entry1">
-                        <label class="mr-sm-2" for="inlineFormCustomSelect">Postcode</label>
-                        <input type="text" class="form-control" id="inlineFormCustomSelect2" placeholder="Postcode">
-                    </div>
-                    <div class="form-group">
-                        <label class="mr-sm-2" for="inlineFormCustomSelect">Order Details</label>
-                        <textarea class="form-control" id="inlineFormCustomSelect3" rows="3"></textarea>
-                    </div>
-                    <div class="tel_entry">
-                        <label class="mr-sm-2" for="inlineFormCustomSelect">Phone Number</label>
-                        <input type="text" class="form-control" id="inlineFormCustomSelect4" placeholder="Phone Number">
-                    </div> 
-                    <div>
-                        <div>
-                            <button id="add-order" type="button" class="btn btn-primary btn-lg btn-block">Add Order</button>
-                            <button id="complete" type="button" class="btn btn-secondary btn-lg btn-block">Orders Complete</button>
+                <div class="container">
+                    <div class="row">
+                      <div class="w-100"></div>
+                      <div class="col">
+                        <img src="images/placeholder_map.png" alt="map" class="img-thumbnail">
+                      </div>
+                        <div class="col">
+                            <h1> Tunstall Order Form </h1>
+                            <div class="form-group">
+                                <div class="postcode_entry">
+                                    <label class="mr-sm-2" for="inlineFormCustomSelect">Order No</label>
+                                    <input type="text" class="form-control" id="inlineFormCustomSelect1" placeholder="Order No">
+                                </div>
+                                <div class="postcode_entry1">
+                                    <label class="mr-sm-2" for="inlineFormCustomSelect">Postcode</label>
+                                    <input type="text" class="form-control" id="inlineFormCustomSelect2" placeholder="Postcode">
+                                </div>
+                                <div class="form-group">
+                                    <label class="mr-sm-2" for="inlineFormCustomSelect">Order Details</label>
+                                    <textarea class="form-control" id="inlineFormCustomSelect3" rows="3"></textarea>
+                                </div>
+                                <div class="tel_entry">
+                                    <label class="mr-sm-2" for="inlineFormCustomSelect">Phone Number</label>
+                                    <input type="text" class="form-control" id="inlineFormCustomSelect4" placeholder="Phone Number">
+                                </div> 
+                                <div>
+                                    <div>
+                                        <button id="add-order" type="button" class="btn btn-primary btn-lg btn-block">Add Order</button>
+                                        <button id="complete" type="button" class="btn btn-secondary btn-lg btn-block">Orders Complete</button>
+                                    </div>
+                                    <button id="generate-list" type="button" class="btn btn-primary btn-lg btn-block">Generate</button>
+                                </div>
+                                <h3 id="temp-list"></h3>
+                            </div>
+                            
                         </div>
-                        <button id="generate-list" type="button" class="btn btn-primary btn-lg btn-block">Generate</button>
                     </div>
-                    <h3 id="temp-list"></h3>
-                </div>
+                  </div>
+                
             </div>  
         </form>    
     </div>
