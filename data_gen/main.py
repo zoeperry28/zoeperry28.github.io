@@ -3,6 +3,7 @@ import zipfile
 import os; 
 import csv
 import location_data
+import natgrid_conv
 import requests
 import sys
 import json
@@ -97,6 +98,7 @@ def adapt_data(postcodes, sheets):
     NO_DONE = 0;
     PERCENT_DONE = 0;
     TOTAL_POSTCODES = 0;
+    NG2LL = natgrid_conv.NatGrid2LatLong();
     for i in range (0, len(postcodes)):
         
         area = location_data.area(postcodes);
@@ -110,7 +112,7 @@ def adapt_data(postcodes, sheets):
         for line in file1:
             new_line = prettify(line)
             cols = new_line.split(",")
-            latlong = natgrid_to_latlong(cols[EASTINGS_LOC], cols[NORTHINGS_LOC])
+            latlong = NG2LL.E_N_To_LatLong(float(cols[EASTINGS_LOC]), float(cols[NORTHINGS_LOC]))
             area.Add(cols[0], cols[NORTHINGS_LOC], cols[EASTINGS_LOC], latlong[0] ,latlong[1])
             write_csv(postcodes[i], cols[0], latlong[0], latlong[1]);
             NO_DONE = NO_DONE + 1;
@@ -119,6 +121,7 @@ def adapt_data(postcodes, sheets):
             sys.stdout.flush()
             sys.stdout.write(("[" + postcodes[i] + "] " + str(PERCENT_DONE) + "% Complete"))
             sys.stdout.flush()
+            NG2LL.E_N_To_LatLong(cols[EASTINGS_LOC], cols[NORTHINGS_LOC])
             json_add_postcode(cols[0], cols[NORTHINGS_LOC], cols[EASTINGS_LOC], latlong[0] ,latlong[1]);
         json_write(postcodes[i] + ".json")
         sys.stdout.write("\n")
