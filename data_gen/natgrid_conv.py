@@ -20,6 +20,11 @@ class NatGrid2LatLong:
         return InitialLat
     
     def GetLatFromEastAndNorth(self, East, North, a, b, e0, n0, f0, PHI0, LAM0): 
+        # eastings (East) and northings (North) in meters; _
+        # ellipsoid axis dimensions (a & b) in meters; _
+        # eastings (e0) and northings (n0) of false origin in meters; _
+        # central meridian scale factor (f0) and _
+        # latitude (PHI0) and longitude (LAM0) of false origin in decimal degrees.
         RadPHI0 = PHI0 * (math.pi / 180)
         RadLAM0 = LAM0 * (math.pi / 180)
 
@@ -47,6 +52,11 @@ class NatGrid2LatLong:
         return E_N_to_Lat;
 
     def GetLongFromEastAndNorth(self, East, North, a, b, e0, n0, f0, PHI0, LAM0): 
+        # eastings (East) and northings (North) in meters; _
+        # ellipsoid axis dimensions (a & b) in meters; _
+        # eastings (e0) and northings (n0) of false origin in meters; _
+        # central meridian scale factor (f0) and _
+        # latitude (PHI0) and longitude (LAM0) of false origin in decimal degrees.
         RadPHI0 = PHI0 * (math.pi / 180)
         RadLAM0 = LAM0 * (math.pi / 180)
 
@@ -73,16 +83,16 @@ class NatGrid2LatLong:
     def E_N_To_LatLong(self, Easting, Northing):
         res = []
 
-        a = 1;
-        b = 1;
-        e0 = 0;
-        n0 = 0;
-        f0 = 1;
-        PHI0 = 0;
-        LAM0 = 0;
+        a = 6377563.396;
+        b = 6356256.909;
+        e0 = 400000;
+        n0 = -100000;
+        f0 = 0.9996012717;
+        PHI0 = 49;
+        LAM0 = -2;
 
-        res.append(self.GetLongFromEastAndNorth(int(Easting), int(Northing), a, b, e0, n0, f0, PHI0, LAM0))
-        res.append(self.GetLatFromEastAndNorth (int(Easting), int(Northing), a, b, e0, n0, f0, PHI0, LAM0))
+        res.append(self.GetLongFromEastAndNorth(float(Easting), float(Northing), a, b, e0, n0, f0, PHI0, LAM0))
+        res.append(self.GetLatFromEastAndNorth (float(Easting), float(Northing), a, b, e0, n0, f0, PHI0, LAM0))
         return res;
 
 
