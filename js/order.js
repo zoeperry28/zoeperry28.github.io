@@ -1,5 +1,4 @@
 import {APICalls} from './api_calls.js'
-
 const api_calls = new APICalls();
 
 class Order {

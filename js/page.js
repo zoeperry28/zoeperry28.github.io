@@ -1,4 +1,5 @@
 import { OrderList } from './order.js';
+import './location_data.js';
 // get the form element
 const form = document.querySelector('form');
 
@@ -76,5 +77,20 @@ document.addEventListener('DOMContentLoaded', () => {
             // do nothing
         }
         orders = [];
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const button = document.querySelector('#generate-list');
+    button.addEventListener('click', async (event) => {
+        console.log("not ok")
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const button = document.querySelector('#confirm-postcode');
+    button.addEventListener('click', async (event) => {
+        let x = document.getElementById("loc").innerHTML;
+        console.log(x)
     });
 });
