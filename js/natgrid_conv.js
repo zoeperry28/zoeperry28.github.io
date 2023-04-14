@@ -4,85 +4,84 @@ class NatGrid2LatLong {
     {
         let Marc = bf0 * (((1 + n + ((5 / 4) * (n ** 2)) + ((5 / 4) * (n ** 3))) * 
                      (PHI - PHI0)) - (((3 * n) + (3 * (n ** 2)) + ((21 / 8) * 
-                     (n ** 3))) * (math.sin(PHI - PHI0)) * (math.cos(PHI + PHI0))) + 
+                     (n ** 3))) * (Math.sin(PHI - PHI0)) * (Math.cos(PHI + PHI0))) + 
                      ((((15 / 8) * (n ** 2)) + ((15 / 8) * (n ** 3))) * 
-                     (math.sin(2 * (PHI - PHI0))) * (math.cos(2 * (PHI + PHI0)))) - 
-                     (((35 / 24) * (n ** 3)) * (math.sin(3 * (PHI - PHI0))) * 
-                     (math.cos(3 * (PHI + PHI0)))));
+                     (Math.sin(2 * (PHI - PHI0))) * (Math.cos(2 * (PHI + PHI0)))) - 
+                     (((35 / 24) * (n ** 3)) * (Math.sin(3 * (PHI - PHI0))) * 
+                     (Math.cos(3 * (PHI + PHI0)))));
         return Marc;
     }
     
     InitialLat(North, n0, afo, PHI0, n, bfo)
     {
-        PHI1 = ((North - n0) / afo) + PHI0
+        var PHI1 = ((North - n0) / afo) + PHI0
         
-        M = self.Marc(bfo, n, PHI0, PHI1)
-        PHI2 = ((North - n0 - M) / afo) + PHI1
+        var M = this.Marc(bfo, n, PHI0, PHI1)
+        var PHI2 = ((North - n0 - M) / afo) + PHI1
         
         while((North - n0 - M) > 0.00001)
         {
             PHI2 = ((North - n0 - M) / afo) + PHI1
-            M = self.Marc(bfo, n, PHI0, PHI2)
+            M = this.Marc(bfo, n, PHI0, PHI2)
             PHI1 = PHI2
         }
 
-        InitialLat = PHI2
+        var InitialLat = PHI2
         return InitialLat
     }
     
     GetLatFromEastAndNorth(East, North, a, b, e0, n0, f0, PHI0, LAM0)
     {
-        RadPHI0 = PHI0 * (math.pi / 180)
-        RadLAM0 = LAM0 * (math.pi / 180)
+        var RadPHI0 = PHI0 * (Math.PI / 180)
+        var RadLAM0 = LAM0 * (Math.PI / 180)
 
-        af0 = a * f0
-        bf0 = b * f0
-        e2 = ((af0 ** 2) - (bf0 ** 2)) / (af0 ** 2)
-        n = (af0 - bf0) / (af0 + bf0)
-        Et = East - e0
+        var af0 = a * f0
+        var bf0 = b * f0
+        var e2 = ((af0 ** 2) - (bf0 ** 2)) / (af0 ** 2)
+        var n = (af0 - bf0) / (af0 + bf0)
+        var Et = East - e0
 
-        PHId = self.InitialLat(North, n0, af0, RadPHI0, n, bf0)
+        var PHId = this.InitialLat(North, n0, af0, RadPHI0, n, bf0)
 
-        nu = af0 / (math.sqrt(1 - (e2 * ((math.sin(PHId)) ** 2))))
-        rho = (nu * (1 - e2)) / (1 - (e2 * (math.sin(PHId)) ** 2))
-        eta2 = (nu / rho) - 1
+        var nu = af0 / (Math.sqrt(1 - (e2 * ((Math.sin(PHId)) ** 2))))
+        var rho = (nu * (1 - e2)) / (1 - (e2 * (Math.sin(PHId)) ** 2))
+        var eta2 = (nu / rho) - 1
 
-        VII = (math.tan(PHId)) / (2 * rho * nu)
-        VIII = ((math.tan(PHId)) / (24 * rho * (nu ** 3))) * (5 + (3 * ((math.tan(PHId)) ** 2)) + 
-               eta2 - (9 * eta2 * ((math.tan(PHId)) ** 2)))
-        IX = ((math.tan(PHId)) / (720 * rho * (nu ** 5))) * (61 + (90 * ((math.tan(PHId)) ** 2)) + 
-             (45 * ((math.tan(PHId)) ** 4)))
+        var VII = (Math.tan(PHId)) / (2 * rho * nu)
+        var VIII = ((Math.tan(PHId)) / (24 * rho * (nu ** 3))) * (5 + (3 * ((Math.tan(PHId)) ** 2)) + 
+               eta2 - (9 * eta2 * ((Math.tan(PHId)) ** 2)))
+               var IX = ((Math.tan(PHId)) / (720 * rho * (nu ** 5))) * (61 + (90 * ((Math.tan(PHId)) ** 2)) + 
+             (45 * ((Math.tan(PHId)) ** 4)))
 
-        E_N_to_Lat = (180 / math.pi) * (PHId - ((Et ** 2) * VII) + ((Et ** 4) * VIII) - ((Et ** 6) * IX))
-        return E_N_to_Lat;
+        return (180 / Math.PI) * (PHId - ((Et ** 2) * VII) + ((Et ** 4) * VIII) - ((Et ** 6) * IX))
+
     }
 
     GetLongFromEastAndNorth(East, North, a, b, e0, n0, f0, PHI0, LAM0)
     {
-        RadPHI0 = PHI0 * (math.pi / 180)
-        RadLAM0 = LAM0 * (math.pi / 180)
+        var RadPHI0 = PHI0 * (Math.PI / 180)
+        var RadLAM0 = LAM0 * (Math.PI / 180)
 
-        af0 = a * f0
-        bf0 = b * f0
-        e2 = ((af0 ** 2) - (bf0 ** 2)) / (af0 ** 2)
-        n = (af0 - bf0) / (af0 + bf0)
-        Et = East - e0
+        var af0 = a * f0
+        var bf0 = b * f0
+        var e2 = ((af0 ** 2) - (bf0 ** 2)) / (af0 ** 2)
+        var n = (af0 - bf0) / (af0 + bf0)
+        var Et = East - e0
 
-        PHId = self.InitialLat(North, n0, af0, RadPHI0, n, bf0)
+        var PHId = this.InitialLat(North, n0, af0, RadPHI0, n, bf0)
         
-        nu = af0 / (math.sqrt(1 - (e2 * ((math.sin(PHId)) ** 2))))
-        rho = (nu * (1 - e2)) / (1 - (e2 * (math.sin(PHId)) ** 2))
-        eta2 = (nu / rho) - 1
+        var nu = af0 / (Math.sqrt(1 - (e2 * ((Math.sin(PHId)) ** 2))))
+        var rho = (nu * (1 - e2)) / (1 - (e2 * (Math.sin(PHId)) ** 2))
+        var eta2 = (nu / rho) - 1
         
-        X =    ((math.cos(PHId)) ** -1) / nu
-        XI =  (((math.cos(PHId)) ** -1) / (6 * (nu ** 3))) * ((nu / rho) + (2 * ((math.tan(PHId)) ** 2)))
-        XII = (((math.cos(PHId)) ** -1) / (120 * (nu ** 5))) * (5 + (28 *    ((math.tan(PHId)) ** 2)) + 
-              (24 * ((math.tan(PHId)) ** 4)))
-        XIIA =(((math.cos(PHId)) ** -1) / (5040 * (nu ** 7))) * (61 + (662 * ((math.tan(PHId)) ** 2)) + 
-              (1320 * ((math.tan(PHId)) ** 4)) + (720 * ((math.tan(PHId)) ** 6)))
+        var X =    ((Math.cos(PHId)) ** -1) / nu
+        var XI =  (((Math.cos(PHId)) ** -1) / (6 * (nu ** 3))) * ((nu / rho) + (2 * ((Math.tan(PHId)) ** 2)))
+        var XII = (((Math.cos(PHId)) ** -1) / (120 * (nu ** 5))) * (5 + (28 *    ((Math.tan(PHId)) ** 2)) + 
+              (24 * ((Math.tan(PHId)) ** 4)))
+        var XIIA =(((Math.cos(PHId)) ** -1) / (5040 * (nu ** 7))) * (61 + (662 * ((Math.tan(PHId)) ** 2)) + 
+              (1320 * ((Math.tan(PHId)) ** 4)) + (720 * ((Math.tan(PHId)) ** 6)))
 
-        E_N_to_Long = (180 / math.pi) * (RadLAM0 + (Et * X) - ((Et ** 3) * XI) + ((Et ** 5) * XII) - ((Et ** 7) * XIIA))
-        return E_N_to_Long;
+        return (180 / Math.PI) * (RadLAM0 + (Et * X) - ((Et ** 3) * XI) + ((Et ** 5) * XII) - ((Et ** 7) * XIIA))
     }
 
     E_N_To_LatLong(Easting, Northing)
@@ -97,8 +96,8 @@ class NatGrid2LatLong {
         let PHI0 = 49;
         let LAM0 = -2;
 
-        res.push(self.GetLatFromEastAndNorth (float(Easting), float(Northing), a, b, e0, n0, f0, PHI0, LAM0))
-        res.push(self.GetLongFromEastAndNorth(float(Easting), float(Northing), a, b, e0, n0, f0, PHI0, LAM0))
+        res.push(this.GetLatFromEastAndNorth (parseFloat(Easting), parseFloat(Northing), a, b, e0, n0, f0, PHI0, LAM0))
+        res.push(this.GetLongFromEastAndNorth(parseFloat(Easting), parseFloat(Northing), a, b, e0, n0, f0, PHI0, LAM0))
         return res;
     }
 }
@@ -106,7 +105,7 @@ class NatGrid2LatLong {
 class DistanceHelper {
     LatLong_Distance(lat1, lat2)
     {
-        let result  = math.acos(math.sin(lat1)*math.sin(lat2)+math.cos(lat1)*math.cos(lat2)*math.cos(lon2-lon1))*6371;
+        let result  = Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon2-lon1))*6371;
         return result;
     }
 }
