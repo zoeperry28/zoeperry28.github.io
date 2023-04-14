@@ -111,3 +111,4 @@ class DistanceHelper {
 }
 
 export { NatGrid2LatLong };
+export { DistanceHelper };

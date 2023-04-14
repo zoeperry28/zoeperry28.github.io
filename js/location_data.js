@@ -1,7 +1,7 @@
 import fs from 'fs';
 import JSZip from 'jszip';
 import csvParser from 'csv-parser';
-import { NatGrid2LatLong } from './natgrid_conv.js';
+import { NatGrid2LatLong } from './geo.js';
 
 const HEADING_FILE = "Code-Point_Open_Column_Headers.csv"
 const CSV_PATH = "data_gen"
@@ -103,7 +103,7 @@ function createJson(data, filename)
 		var POSTCODE = data[i]["Postcode"]
 		var NORTHINGS = data[i]["Northings"]
 		var EASTINGS = data[i]["Eastings"]
-
+   
 		const ll = ng_ll.E_N_To_LatLong(parseFloat(EASTINGS), parseFloat(NORTHINGS));
 		fileData.postcodes.push({
 			POSTCODE,
