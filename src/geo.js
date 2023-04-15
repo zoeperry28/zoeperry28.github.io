@@ -103,10 +103,10 @@ class NatGrid2LatLong {
 }
 
 class DistanceHelper {
-    LatLong_Distance(lat1, lat2)
+    LatLong_Distance(LL1, LL2)
     {
-        let result  = Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon2-lon1))*6371;
-        return result;
+        let result  = Math.acos(Math.sin(LL1[0])*Math.sin(LL2[0])+Math.cos(LL1[0])*Math.cos(LL2[0])*Math.cos(LL2[1]-LL1[1]))*6371;
+        return result; 
     }
 }
 
