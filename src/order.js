@@ -1,4 +1,4 @@
-import {APICalls} from './api_calls.js'
+const APICalls = require( './api_calls.js');
 const api_calls = new APICalls();
 
 class Order {
@@ -146,6 +146,8 @@ class RouteFinder {
     }
 }
 
-export { Order };
-export { OrderList };
-export { RouteFinder };
+module.exports = {
+    Order,
+    OrderList,
+    RouteFinder
+  };

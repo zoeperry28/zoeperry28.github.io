@@ -1,7 +1,7 @@
-import fs from 'fs';
-import JSZip from 'jszip';
-import csvParser from 'csv-parser';
-import { NatGrid2LatLong } from './geo.js';
+const fs        = require( 'fs');
+const JSZip     = require( 'jszip');
+const csvParser = require( 'csv-parser');
+const NatGrid2LatLong = require( './geo.js' );
 
 const HEADING_FILE = "Code-Point_Open_Column_Headers.csv"
 const CSV_PATH = "data_gen"
@@ -122,7 +122,6 @@ function createJson(data, filename)
 
 function getName(path)
 {
-	// Get the last index of the forward slash "/" character in the file path
 	const lastSlashIndex = path.lastIndexOf("/");
 	const csvFileNameWithExtension = path.substring(lastSlashIndex + 1);
 	const csvFileName = csvFileNameWithExtension.replace(".csv", "");

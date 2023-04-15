@@ -1,11 +1,11 @@
-import { OrderList } from './order.js';
-import './location_data.js';
+const { Order, OrderList, RouteFinder } = require('./order.js');
+//import './location_data.js';
 // get the form element
 const form = document.querySelector('form');
 
 // create an empty array to hold the orders
 let orders = [];
-
+console.log("OK")
 // listen for button click
 document.addEventListener('DOMContentLoaded', () => {
     const button = document.querySelector('#add-order');
@@ -83,10 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const button = document.querySelector('#generate-list');
     button.addEventListener('click', async (event) => {
-        console.log("not ok")
+        console.log("list generated")
     });
 });
-
+//
 document.addEventListener('DOMContentLoaded', () => {
     const button = document.querySelector('#confirm-postcode');
     button.addEventListener('click', async (event) => {
@@ -94,3 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(x)
     });
 });
+
+
+console.log("OK haha")

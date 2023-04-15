@@ -1,11 +1,3 @@
-let fetch = globalThis?.fetch;
-
-if (!fetch && process?.versions?.node) {
-  fetch = (await import('node-fetch')).default;
-}
-
-console.log(fetch);
-
 var APIKey = "5b3ce3597851110001cf62485a4bf8c2a5b64dd0bdaf5919a644b628";
 class APICalls {
 
@@ -13,7 +5,8 @@ class APICalls {
     {
         console.log(LatLong1)
         console.log(LatLong2)
-        return "https://api.openrouteservice.org/v2/directions/driving-car?api_key=" + APIKey + "&start="+LatLong1[1]+","+LatLong1[0]+"&end="+LatLong2[1]+","+LatLong2[0];
+        return "https://api.openrouteservice.org/v2/directions/driving-car?api_key=" + APIKey + 
+              "&start="+LatLong1[1]+","+LatLong1[0]+"&end="+LatLong2[1]+","+LatLong2[0];
     }
 
     OSM_LocationRequest(Postcode)
@@ -80,5 +73,6 @@ class APICalls {
     }
 }
 
-
-export { APICalls };
+module.exports = {
+  APICalls
+};
