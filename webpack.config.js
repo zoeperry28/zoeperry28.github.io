@@ -4,7 +4,7 @@ const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 module.exports = {
   entry: './src/page.js',
   output: {
-    filename: 'bundle.js',
+    filename: './dist/bundle.js',
     path: path.resolve(__dirname, '.'),
     publicPath: '.'
   },

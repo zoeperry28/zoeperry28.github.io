@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": "true",
   "scripts": {
-    "serve": "webpack-dev-server --hot",
+    "serve": "webpack-dev-server --hot --inline --watch",
     "start": "webpack"
   },
   "author": "",
