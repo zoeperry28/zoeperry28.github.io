@@ -7,9 +7,11 @@ const form = document.querySelector('form');
 let orders = [];
 console.log("OK")
 // listen for button click
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => 
+{
     const button = document.querySelector('#add-order');
-    button.addEventListener('click', (event) => {
+    button.addEventListener('click', (event) => 
+    {
         // prevent the default form submission behavior
         event.preventDefault();
 
@@ -20,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const phoneNumber = document.querySelector('#inlineFormCustomSelect4').value;
 
         // create an object with the form data
-        const order = {
+        const order = 
+        {
             orderNo: orderNo,
             postcode: postcode,
             orderDetails: orderDetails,
@@ -80,16 +83,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => 
+{
     const button = document.querySelector('#generate-list');
-    button.addEventListener('click', async (event) => {
+    button.addEventListener('click', async (event) => 
+    {
         console.log("list generated")
     });
 });
 //
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => 
+{
     const button = document.querySelector('#confirm-postcode');
-    button.addEventListener('click', async (event) => {
+    button.addEventListener('click', async (event) => 
+    {
         let x = document.getElementById("loc").innerHTML;
         console.log(x)
     });

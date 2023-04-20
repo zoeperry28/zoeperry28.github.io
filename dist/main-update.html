@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <link rel="stylesheet" href="../src/styles/main.css">
+   </head>
+   <body>
+    <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Tech Spec</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar">
+        <ul>
+          <li><a href="#">
+            <button id="nav-button">Home</button>
+          </a></li>
+          <li><a href="#"></a>
+            <button id="nav-button">Home</button></li>
+          <li><a href="#">
+            <button id="nav-button">Home</button>
+          </a></li>
+        </ul>
+      </div>
+      <!-- Main body of the website begins -->
+      <div class="flex-container">
+        <div class="grid-item" id="flex1">
+            <img src="../images/placeholder_map.png" alt="">
+            <table>
+                <tr>
+                  <th id="header1">Order No.</th>
+                  <th id="header2">Postcode</th>
+                  <th id="header3">Details</th>
+                  <th id="header4">Phone No.</th>
+                </tr>
+                <tr>
+                  <td>Alfreds Futterkiste</td>
+                  <td>Maria Anders</td>
+                  <td>Germany</td>
+                </tr>
+                <tr>
+                  <td>Centro comercial Moctezuma</td>
+                  <td>Francisco Chang</td>
+                  <td>Mexico</td>
+                </tr>
+              </table>
+        </div>
+        <div class="grid-item flex2">
+            <div class="grid-container" id="form">
+                <div class="grid-item" id="form-ele">
+                    <h3> Order Number</h3>
+                </div>
+                <div class="grid-item" id="form-ele">
+                    <input type="text" id="order-no" name="orderno"><br><br>
+                </div>
+                <div class="grid-item" id="form-ele">
+                    <h3> Postcode </h3>
+                </div>
+                <div class="grid-item" id="form-ele">
+                    <input type="text" id="postcode" name="postcode"><br><br>
+                </div>
+                <div class="grid-item" id="form-ele">
+                    <h3> Order Details</h3>
+                </div>
+                <div class="grid-item" id="form-ele">
+                    <textarea id="order-details" name="order-details"></textarea>
+                       
+                    </textarea>
+                </div>
+                <div class="grid-item" id="form-ele">
+                    <h3> Phone Number</h3>
+                </div>
+                <div class="grid-item" id="form-ele">
+                    <input type="text" id="phone-no" name="phone-no"><br><br>
+                </div>
+            </div>
+            <br></br>
+            <button id="add-to-list"> ADD TO LIST </button><br></br>
+            <button id="complete"> COMPLETE/DOWNLOAD </button>
+        </div>
+        <div class="grid-item flex3" id="list">
+            
+        </div>
+
+        <div class="grid-item flex4">
+        </div>
+      </div>
+      </div>
+   </body>
+</html>

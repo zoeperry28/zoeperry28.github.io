@@ -1,6 +1,4 @@
-const APICalls = require( './api_calls.js');
-const api_calls = new APICalls();
-
+const api_calls = require( './api_calls.js');
 class Order {
     constructor(OrderNo, ItemString, Tel, Postcode)
     {

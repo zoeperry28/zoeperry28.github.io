@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/page.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '.'),
     publicPath: '.'
   },
   experiments:{
@@ -15,7 +15,7 @@ module.exports = {
   target: 'web', // set target to web instead of node
   devServer: {
     static: {
-      directory: path.resolve(__dirname, 'dist')
+      directory: path.resolve(__dirname, '.')
     },
     port: 8080,
     open: true,
@@ -65,6 +65,13 @@ module.exports = {
       {
         test: /papaparse/,
         loader: 'umd-compat-loader',
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
       }
     ]
   }
